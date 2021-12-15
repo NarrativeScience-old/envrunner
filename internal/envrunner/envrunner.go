@@ -39,7 +39,7 @@ func GetSecretEnv(client *secretsmanager.Client, sc SecretConfig) []string {
 	json.Unmarshal([]byte(*output.SecretString), &result)
 	var env []string
 	for key, value := range result {
-		env = append(env, key+"="+value.(string))
+		env = append(env, sc.Prefix+key+"="+value.(string))
 	}
 	return env
 }
